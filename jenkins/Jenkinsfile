@@ -1,11 +1,30 @@
 pipeline {
+    parameters {
+        string(name: 'helmPrivateRepoUrl', defaultValue: '', description: 'Url to private helm repo')
+        string(name: 'helmPrivateRepoName', defaultValue: '', description: 'Url to private helm repo')
+        string(name: 'helmChartName', defaultValue: '', description: 'name of the chart to deploy')
+        string(name: 'helmChartDeployName', defaultValue: '', description: 'name of the chart to deploy')
+    }
     agent {
-        docker { image 'dtzar/helm-kubectl:3' }
+        docker{ 
+            image 'dtzar/helm-kubectl:3'
+            args '-u root'
+        }
     }
     stages {
-        stage('Deploy') {
+        stage('Update Helm Repos') {
             steps {
-                sh 'helm list'
+                withKubeConfig([credentialsId: 'aks-kubeconfig']) {
+                    sh  "helm repo add ${helmPrivateRepoName} ${helmPrivateRepoUrl}"
+                    sh  "helm repo update"
+                }
+            }
+        }
+        stage('Update Helm Repo') {
+            steps {
+                withKubeConfig([credentialsId: 'aks-kubeconfig']) {
+                    sh  "helm upgrade --install ${helmChartDeployName} ${helmChartName}"
+                }
             }
         }
     }
