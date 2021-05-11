@@ -47,7 +47,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: 51.105.252.174
+    - host: chart-example.local
       paths:
       - path: /
         backend:
