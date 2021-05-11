@@ -5,9 +5,7 @@ pipeline {
     stages {
         stage('Deploy') {
         withKubeConfig([credentialsId: 'aks-kubeconfig'])
-            steps {
-                sh 'helm list'
-            }
+              sh 'helm list'
         }
     }
 }
