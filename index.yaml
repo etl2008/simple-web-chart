@@ -3,12 +3,12 @@ entries:
   simple-web:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-05-11T07:52:47.635191703Z"
+    created: "2021-05-11T09:25:53.709883507Z"
     description: A Helm chart for Kubernetes
-    digest: 3f410a322483f6629b4544d6f6a09cdedf29bd8d60ec967b3db0c842c209971c
+    digest: dde003533a09156fc046d8c5ffa067175d76efbff8e9ab951286d0f3a086d453
     name: simple-web
     type: application
     urls:
     - simple-web-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-11T07:52:47.633130773Z"
+generated: "2021-05-11T09:25:53.70589235Z"
