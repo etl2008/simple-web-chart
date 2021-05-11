@@ -4,7 +4,7 @@ pipeline {
     }
     stages {
         stage('Deploy') {
-        withKubeConfig([credentialsId: 'aks-kubeconfig', serverUrl: 'https://api.k8s.my-company.com'])
+        withKubeConfig([credentialsId: 'aks-kubeconfig'])
             steps {
                 sh 'helm list'
             }
